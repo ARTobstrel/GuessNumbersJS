@@ -26,6 +26,11 @@
     box-shadow: inset 2px 2px 10px #c8bcff;
 }
 
+#screen-out {
+    position: absolute;
+    margin: 5px;
+}
+
 #input-frame {
     position: absolute;
     display: inline-block;

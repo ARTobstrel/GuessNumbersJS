@@ -52,6 +52,8 @@ function getWindowMessage(input_number) {
 function mainStackGame() {
     value = document.getElementById('input-text').value;
     input_number = stringToInt(value);
-    console.log(getWindowMessage(input_number));
-    console.log(settings.setNum);
+    window_out.innerHTML = getWindowMessage(input_number);
+    for (let i in setNum) {
+        console.log(i);
+    }
 }
