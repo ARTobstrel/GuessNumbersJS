@@ -20,8 +20,8 @@ function getWindowMessage(input_number) {
             return MESSAGE.not_number_mes;
         }
 
-        // введено число меньше 0 или больше 100
-        if (input_number < 0 || input_number > 100) {
+        // введено число меньше 1 или больше 100
+        if (input_number < 1 || input_number > 100) {
             return MESSAGE.out_of_range_mes;
         }
 
@@ -29,7 +29,7 @@ function getWindowMessage(input_number) {
         if (input_number == number_in_memory) {
             settings.setNum.add(input_number);
             settings.active_game = false;
-            document.getElementById('btn').style.display = 'none';
+            document.getElementById('btn').style.visibility = 'hidden';
 
             return MESSAGE.win_mes;
         }
@@ -40,20 +40,12 @@ function getWindowMessage(input_number) {
             return MESSAGE.less_mes;
         }
 
+        // введенное число меньше загаданного числа
         if (input_number < number_in_memory) {
             settings.setNum.add(input_number);
             return MESSAGE.more_mes;
         }
     } else {
         return MESSAGE.welcome_mes;
-    }
-}
-
-function mainStackGame() {
-    value = document.getElementById('input-text').value;
-    input_number = stringToInt(value);
-    window_out.innerHTML = getWindowMessage(input_number);
-    for (let i in setNum) {
-        console.log(i);
     }
 }

@@ -29,6 +29,8 @@
 #screen-out {
     position: absolute;
     margin: 5px;
+    height: 190px;
+    overflow-y: auto    ;
 }
 
 #input-frame {
