@@ -32,19 +32,17 @@ document.getElementById('btn').onclick = function () {
 
     // данная команда отоброжает сообщение на экране
     if (input_number == number_in_memory) {
-        // если игрок угадал число, то экран полностью заменяется новым сообщением
-        window_out.innerHTML = getWindowMessage(input_number);
+        // если игрок угадал число, то экран полностью заменяется новым сообщением, с подстановкой переменных в строку
+        let htmltext = `${getWindowMessage(input_number)}`.replace('<number_in_memory>', `${number_in_memory}`); //подстановка загаданного числа
+        htmltext = htmltext.replace('<counter>', `${settings.counter}`); //подстановка количества попыток
+        let all_nums = all_input_numbers(settings.setNum) + '';
+        htmltext = htmltext.replace('<all_input_numbers>', `${all_nums}`); //подстановка введенных цифр
+        window_out.innerHTML = htmltext;
     } else {
         // в ином случае сообщения будут выводится друг за другом
-        window_out.innerHTML += ('<br>' + getWindowMessage(input_number));
+        window_out.innerHTML += (`<br>${getWindowMessage(input_number)}`);
     }
 
-    //вывод всех ввденных чисел в консоли
-    let y = '';
-    for (let i of settings.setNum) {
-        y += i + ' ';
-    }
-    console.log(y);
 
     document.getElementById('input-text').value = ''; // очищает поле ввода цифр
 }

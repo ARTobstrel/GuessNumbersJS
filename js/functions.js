@@ -10,6 +10,16 @@ function stringToInt(value) {
     return val;
 }
 
+// Функция выводит все введенные цифры
+function all_input_numbers(all_nums) {
+    let y = '';
+    for (let i of all_nums) {
+        y += (i + ' ');
+    }
+    return y;
+}
+
+
 // Функция проверок и изменений игровых условий и генерации игровых сообщений
 function getWindowMessage(input_number) {
     //если игра активна
@@ -30,19 +40,21 @@ function getWindowMessage(input_number) {
             settings.setNum.add(input_number);
             settings.active_game = false;
             document.getElementById('btn').style.visibility = 'hidden';
-
+            settings.counter++;
             return MESSAGE.win_mes;
         }
 
         // введенное число больше загаданного числа
         if (input_number > number_in_memory) {
             settings.setNum.add(input_number);
+            settings.counter++;
             return MESSAGE.less_mes;
         }
 
         // введенное число меньше загаданного числа
         if (input_number < number_in_memory) {
             settings.setNum.add(input_number);
+            settings.counter++;
             return MESSAGE.more_mes;
         }
     } else {
