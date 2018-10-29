@@ -8,7 +8,7 @@ let settings = {
 
 // создание переменной для хранения сообщений
 let window_message;
-window_message = MESSAGE.welcome_mes;
+window_message = select_random_mes(MESSAGE.welcome_mes);
 
 // создание переменной window_out в которой будут передаваться все сообщения, так же вывод на экран приветственного сообщения
 let window_out = document.getElementById('screen-out');
@@ -22,7 +22,7 @@ document.getElementById('btn-newgame').onclick = function () {
     settings.counter = 0;
     settings.setNum.clear();
     number_in_memory = guessedNumber();
-    window_out.innerHTML = MESSAGE.start; // выводит стартовое сообщение на экран 
+    window_out.innerHTML = select_random_mes(MESSAGE.start); // выводит стартовое сообщение на экран 
 };
 
 // Присвоение события кнопке 'Send'

@@ -19,6 +19,12 @@ function all_input_numbers(all_nums) {
     return y;
 }
 
+// Функция выбирает случайное сообщение из массива, messages.js
+function select_random_mes (mes_array) {
+    index = Math.floor(Math.random() * mes_array.length);
+    return mes_array[index];
+}
+
 
 // Функция проверок и изменений игровых условий и генерации игровых сообщений
 function getWindowMessage(input_number) {
@@ -27,12 +33,12 @@ function getWindowMessage(input_number) {
 
         // введены буквы вместо цифр
         if (isNaN(input_number)) {
-            return MESSAGE.not_number_mes;
+            return select_random_mes(MESSAGE.not_number_mes);
         }
 
         // введено число меньше 1 или больше 100
         if (input_number < 1 || input_number > 100) {
-            return MESSAGE.out_of_range_mes;
+            return select_random_mes(MESSAGE.out_of_range_mes);
         }
 
         // введенное число равно загаданому числу
