@@ -39,7 +39,7 @@ function getWindowMessage(input_number) {
         if (input_number == number_in_memory) {
             settings.setNum.add(input_number);
             settings.active_game = false;
-            document.getElementById('btn').style.visibility = 'hidden';
+            document.getElementById('input-frame').style.visibility = 'hidden';
             settings.counter++;
             return MESSAGE.win_mes;
         }

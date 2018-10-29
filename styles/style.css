@@ -34,6 +34,7 @@
 }
 
 #input-frame {
+    visibility: hidden;
     position: absolute;
     display: inline-block;
     top: 220px;
@@ -46,7 +47,6 @@
 }
 
 #btn {
-    visibility: hidden;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -126,7 +126,7 @@
 
 #version {
     font-size: 10px;
-    margin-left: 164px;
+    margin-left: 150px;
 }
 
 #author {

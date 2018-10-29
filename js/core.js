@@ -16,7 +16,7 @@ window_out.innerHTML = window_message; // выводит приветствен�
 
 // Присвоение событий кнопке 'new game'
 document.getElementById('btn-newgame').onclick = function () {
-    document.getElementById('btn').style.visibility = 'visible';
+    document.getElementById('input-frame').style.visibility = 'visible';
     settings.active_game = true;
     settings.bonus_game = false;
     settings.counter = 0;
