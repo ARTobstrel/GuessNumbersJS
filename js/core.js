@@ -4,7 +4,7 @@ let settings = {
     'bonus_game': false,
     'counter': 0,
     'setNum': new Set(),
-}
+};
 
 // создание переменной для хранения сообщений
 let window_message;
@@ -31,7 +31,7 @@ document.getElementById('btn').onclick = function () {
     input_number = stringToInt(value);
 
     // данная команда отоброжает сообщение на экране
-    if (input_number == number_in_memory) {
+    if (input_number === number_in_memory) {
         // если игрок угадал число, то экран полностью заменяется новым сообщением, с подстановкой переменных в строку
         let htmltext = `${getWindowMessage(input_number)}`.replace('<number_in_memory>', `${number_in_memory}`); //подстановка загаданного числа
         htmltext = htmltext.replace('<counter>', `${settings.counter}`); //подстановка количества попыток
@@ -45,4 +45,4 @@ document.getElementById('btn').onclick = function () {
 
 
     document.getElementById('input-text').value = ''; // очищает поле ввода цифр
-}
+};

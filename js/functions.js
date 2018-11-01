@@ -6,11 +6,11 @@ function guessedNumber() {
 
 // Функция преобразования введенного текста в целое число
 function stringToInt(value) {
-    val = Number.parseInt(value)
+    val = Number.parseInt(value);
     return val;
 }
 
-// Функция выводит все введенные цифры
+// Функция выводит все введенные пользователем цифры
 function all_input_numbers(all_nums) {
     let y = '';
     for (let i of all_nums) {
@@ -20,11 +20,10 @@ function all_input_numbers(all_nums) {
 }
 
 // Функция выбирает случайное сообщение из массива, messages.js
-function select_random_mes (mes_array) {
+function select_random_mes(mes_array) {
     index = Math.floor(Math.random() * mes_array.length);
     return mes_array[index];
 }
-
 
 // Функция проверок и изменений игровых условий и генерации игровых сообщений
 function getWindowMessage(input_number) {
@@ -41,8 +40,14 @@ function getWindowMessage(input_number) {
             return select_random_mes(MESSAGE.out_of_range_mes);
         }
 
+        // число введено повторно
+        if (settings.setNum.has(input_number)) {
+            let y = select_random_mes(MESSAGE.already_exists_mes);
+            return y.replace('<num>', input_number);
+        }
+
         // введенное число равно загаданому числу
-        if (input_number == number_in_memory) {
+        if (input_number === number_in_memory) {
             settings.setNum.add(input_number);
             settings.active_game = false;
             document.getElementById('input-frame').style.visibility = 'hidden';
@@ -64,6 +69,6 @@ function getWindowMessage(input_number) {
             return MESSAGE.more_mes;
         }
     } else {
-        return MESSAGE.welcome_mes;
+        return select_random_mes(MESSAGE.welcome_mes);
     }
 }
