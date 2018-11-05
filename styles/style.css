@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    border-width: 2px;
 }
 
 #main-frame {
@@ -46,7 +47,7 @@
     height: 24px;
 }
 
-#btn {
+#btn-send {
     cursor: pointer;
     text-decoration: none;
     text-align: center;
@@ -70,7 +71,7 @@
     box-shadow: 3px 3px 4px #bababa, inset 0px 0px 1px #e69f9f;
 }
 
-#btn:hover {
+#btn-send:hover {
     padding: 12px 25px;
     border: none;
     -webkit-border-radius: 20px;
@@ -91,7 +92,7 @@
     box-shadow: 3px 3px 4px #bababa, inset 0px 0px 1px #e69f9f;
 }
 
-#btn:active {
+#btn-send:active {
     padding: 12px 25px;
     border: none;
     -webkit-border-radius: 20px;
@@ -115,18 +116,29 @@
 #footer-frame {
     position: absolute;
     display: inline-block;
+    width: 100%;
     top: 374px;
-    left: 14px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
-#footer-frame button {
+#btn-newgame {
+    margin-left: 2%;
     border-bottom-left-radius: 15px;
     font-size: 13px;
 }
 
+#btn-bonusgame {
+    visibility: hidden;
+    font-size: 13px;
+}
+
 #version {
+    position: absolute;
     font-size: 10px;
-    margin-left: 150px;
+    right: 3%;
+    bottom: 30%;
 }
 
 #author {

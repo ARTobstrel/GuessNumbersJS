@@ -1,6 +1,7 @@
 // Определение случайного числа от 1 до 100 включительно
 function guessedNumber() {
     let val = Math.floor(100 * Math.random()) + 1;
+    console.log(val);
     return val
 }
 
@@ -43,7 +44,7 @@ function getWindowMessage(input_number) {
         // число введено повторно
         if (settings.setNum.has(input_number)) {
             let y = select_random_mes(MESSAGE.already_exists_mes);
-            return y.replace('<num>', input_number);
+            return y.replace('num', input_number);
         }
 
         // введенное число равно загаданому числу
@@ -52,23 +53,32 @@ function getWindowMessage(input_number) {
             settings.active_game = false;
             document.getElementById('input-frame').style.visibility = 'hidden';
             settings.counter++;
-            return MESSAGE.win_mes;
+
+            //количество попыток не превышает 3 то запустить бонусную игру
+            if (settings.counter <= 3){
+                settings.bonus_game = true;
+                document.getElementById('btn-bonusgame').style.visibility = 'visible';
+                return select_random_mes(MESSAGE.bonus_mes);
+            } else {
+                return select_random_mes(MESSAGE.win_mes);
+            }
         }
 
         // введенное число больше загаданного числа
         if (input_number > number_in_memory) {
             settings.setNum.add(input_number);
             settings.counter++;
-            return MESSAGE.less_mes;
+            return select_random_mes(MESSAGE.less_mes);
         }
 
         // введенное число меньше загаданного числа
         if (input_number < number_in_memory) {
             settings.setNum.add(input_number);
             settings.counter++;
-            return MESSAGE.more_mes;
+            return select_random_mes(MESSAGE.more_mes);
         }
     } else {
+
         return select_random_mes(MESSAGE.welcome_mes);
     }
 }

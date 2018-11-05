@@ -6,9 +6,13 @@ let settings = {
     'setNum': new Set(),
 };
 
-// создание переменной для хранения сообщений
+//Создание переменных
 let window_message;
-window_message = select_random_mes(MESSAGE.welcome_mes);
+window_message = select_random_mes(MESSAGE.welcome_mes); // создание переменной для хранения сообщений
+let htmltext; // переменная с текстом который попадет в window_message
+let all_nums;
+let core_bonus_game = new BonusGame(); //переменная для хранения экземпляра класса BonusGame()
+// let user_number; // переменная для хранения числа загаданного пользователем
 
 // создание переменной window_out в которой будут передаваться все сообщения, так же вывод на экран приветственного сообщения
 let window_out = document.getElementById('screen-out');
@@ -26,23 +30,57 @@ document.getElementById('btn-newgame').onclick = function () {
 };
 
 // Присвоение события кнопке 'Send'
-document.getElementById('btn').onclick = function () {
+document.getElementById('btn-send').onclick = function () {
     value = document.getElementById('input-text').value;
     input_number = stringToInt(value);
 
-    // данная команда отоброжает сообщение на экране
-    if (input_number === number_in_memory) {
-        // если игрок угадал число, то экран полностью заменяется новым сообщением, с подстановкой переменных в строку
-        let htmltext = `${getWindowMessage(input_number)}`.replace('<number_in_memory>', `${number_in_memory}`); //подстановка загаданного числа
-        htmltext = htmltext.replace('<counter>', `${settings.counter}`); //подстановка количества попыток
-        let all_nums = all_input_numbers(settings.setNum) + '';
-        htmltext = htmltext.replace('<all_input_numbers>', `${all_nums}`); //подстановка введенных цифр
-        window_out.innerHTML = htmltext;
+    // если активна бонусная игра, то срабатывает эта ветка
+    if (settings.bonus_game) {
+
+        // Здесь пишем логику бонусной игры
+
     } else {
-        // в ином случае сообщения будут выводится друг за другом
-        window_out.innerHTML += (`<br>${getWindowMessage(input_number)}`);
+
+        // данная команда отоброжает сообщение на экране
+        if (input_number === number_in_memory) {
+
+            if (settings.counter <= 3) {
+                htmltext = `${getWindowMessage(input_number)}`.replace('number_in_memory', `${number_in_memory}`);
+                htmltext = htmltext.replace('counter', `${settings.counter}` + ' попыток');
+                window_out.innerHTML = htmltext;
+
+            } else {
+
+                // если игрок угадал число, то экран полностью заменяется новым сообщением, с подстановкой переменных в строку
+                htmltext = `${getWindowMessage(input_number)}`.replace('number_in_memory', `${number_in_memory}`); //подстановка загаданного числа
+                htmltext = htmltext.replace('counter', `${settings.counter}`); //подстановка количества попыток
+                all_nums = all_input_numbers(settings.setNum) + '';
+                htmltext = htmltext.replace('all_input_numbers', `${all_nums}`); //подстановка введенных цифр
+                window_out.innerHTML = htmltext;
+            }
+
+        } else {
+            // в ином случае сообщения будут выводится друг за другом
+            window_out.innerHTML += (`<br>${getWindowMessage(input_number)}`);
+        }
+
+
+        document.getElementById('input-text').value = ''; // очищает поле ввода цифр
     }
 
+};//end event onclick
 
-    document.getElementById('input-text').value = ''; // очищает поле ввода цифр
+
+// Присвоение события кнопке 'Bonus'
+document.getElementById('btn-bonusgame').onclick = function () {
+    //Вывод на экран правил игры
+    window_out.style.color = 'blue';
+    window_out.style.fontSize = '18px';
+    window_out.innerHTML = select_random_mes(MESSAGE.start_bonus_mes);
+
+    document.getElementById('input-frame').style.visibility = 'visible';
+    settings.active_game = false;
+    settings.counter = 0;
+    settings.setNum.clear();
+
 };

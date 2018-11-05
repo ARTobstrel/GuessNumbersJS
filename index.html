@@ -24,25 +24,35 @@
 
     <div id="input-frame">
         <input type="text" id="input-text" placeholder="input number" required>
-        <button type="submit" id="btn">Send</button>
+        <button type="submit" id="btn-send">Send</button>
     </div>
 
     <div id="footer-frame">
-        <button type="submit" id="btn-newgame">New game</button>
+        <button id="btn-newgame">New game</button>
+
+        <button id="btn-bonusgame">Bonus</button>
 
         <span id="version">
-                ver. 1.00b
-            </span>
+                ver. 1.01b
+        </span>
     </div>
 </div>
 
-<div id="author">
-    © Fadeev Artem
-</div>
+<details id="author">
+    <summary>
+        © Fadeev Artem
+    </summary>
+    <p>
+        Эту величайшую игру разработал<hr>
+        величайший программист<hr>
+        Фадеев Артём, Россия.
+    </p>
+</details>
 
 </body>
 <script src="js/messages.js" defer></script>
 <script src="js/functions.js" defer></script>
+<script src="js/bonus.js" defer></script>
 <script src="js/core.js" defer></script>
 
 
