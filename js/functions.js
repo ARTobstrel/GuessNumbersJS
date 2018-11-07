@@ -1,8 +1,15 @@
-// Определение случайного числа от 1 до 100 включительно
+// Получение случайного числа от 1 до 100 включительно
 function guessedNumber() {
-    let val = Math.floor(100 * Math.random()) + 1;
-    console.log(val);
-    return val
+    let rand = Math.floor(100 * Math.random()) + 1;
+    console.log(rand);
+    return rand;
+}
+
+// Получение случайного числа в диапазоне от мин к макс
+function randomInteger(min, max) {
+    let rand = min + Math.random() * (max + 1 - min);
+    rand = Math.floor(rand);
+    return rand;
 }
 
 // Функция преобразования введенного текста в целое число
@@ -55,7 +62,7 @@ function getWindowMessage(input_number) {
             settings.counter++;
 
             //количество попыток не превышает 3 то запустить бонусную игру
-            if (settings.counter <= 3){
+            if (settings.counter <= 3) {
                 settings.bonus_game = true;
                 document.getElementById('btn-bonusgame').style.visibility = 'visible';
                 return select_random_mes(MESSAGE.bonus_mes);
@@ -81,4 +88,25 @@ function getWindowMessage(input_number) {
 
         return select_random_mes(MESSAGE.welcome_mes);
     }
+}
+
+function getWindowMessageBonus(input_number, comp_number) {
+
+    if (comp_number === input_number) {
+        notEqual = false;
+        return 'Congratulat<br>';
+    }
+
+    if (comp_number < input_number) {
+        min_value = comp_number + 1;
+        return 'More<br>';
+    }
+
+    if (comp_number > input_number) {
+        max_value = comp_number - 1;
+        return 'Less<br>';
+
+    }
+
+
 }

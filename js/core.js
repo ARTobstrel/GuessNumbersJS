@@ -12,7 +12,13 @@ window_message = select_random_mes(MESSAGE.welcome_mes); // создание п�
 let htmltext; // переменная с текстом который попадет в window_message
 let all_nums;
 let core_bonus_game = new BonusGame(); //переменная для хранения экземпляра класса BonusGame()
-// let user_number; // переменная для хранения числа загаданного пользователем
+let max_value = 1000;
+let min_value = 1;
+let notEqual = true;
+
+if (settings.bonus_game) {
+    document.getElementById('btn-bonusgame').style.visibility = 'visible';
+}
 
 // создание переменной window_out в которой будут передаваться все сообщения, так же вывод на экран приветственного сообщения
 let window_out = document.getElementById('screen-out');
@@ -20,9 +26,10 @@ window_out.innerHTML = window_message; // выводит приветствен�
 
 // Присвоение событий кнопке 'new game'
 document.getElementById('btn-newgame').onclick = function () {
+
     document.getElementById('input-frame').style.visibility = 'visible';
-    settings.active_game = true;
     settings.bonus_game = false;
+    settings.active_game = true;
     settings.counter = 0;
     settings.setNum.clear();
     number_in_memory = guessedNumber();
@@ -37,7 +44,14 @@ document.getElementById('btn-send').onclick = function () {
     // если активна бонусная игра, то срабатывает эта ветка
     if (settings.bonus_game) {
 
-        // Здесь пишем логику бонусной игры
+        while (notEqual) {
+            let comp_number = randomInteger(min_value, max_value);
+            htmltext = select_random_mes(MESSAGE.comp_running_mes).replace('num', comp_number);
+            window_out.innerHTML += htmltext;
+            htmltext = getWindowMessageBonus(input_number, comp_number);
+            window_out.innerHTML += htmltext;
+            console.log(comp_number);
+        }
 
     } else {
 
@@ -75,7 +89,6 @@ document.getElementById('btn-send').onclick = function () {
 document.getElementById('btn-bonusgame').onclick = function () {
     //Вывод на экран правил игры
     window_out.style.color = 'blue';
-    window_out.style.fontSize = '18px';
     window_out.innerHTML = select_random_mes(MESSAGE.start_bonus_mes);
 
     document.getElementById('input-frame').style.visibility = 'visible';
