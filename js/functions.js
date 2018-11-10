@@ -52,6 +52,12 @@ function getStringCounter(counter) {
     }
 }
 
+
+// Функция добавляет в начале каждого сообщения переход на новую строку
+function getBR(text) {
+    return (`<br>${text}`);
+}
+
 // Функция проверок и изменений игровых условий и генерации игровых сообщений
 function getWindowMessage(input_number) {
     //если игра активна
