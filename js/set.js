@@ -1,10 +1,9 @@
 // Основные настройки игры
-let set = {
-    'active_game': false,
-    'bonus_game': false,
-    'counter': 0,
-    'setNum': new Set(),
-};
+active_game = false;
+bonus_game = false;
+counter = 0;
+setNum = new Set();
+
 
 //Создание переменных
 let window_message;
@@ -16,6 +15,6 @@ let min_value = 1;
 let notEqual = true;
 let comp_number;
 
-if (set.bonus_game) {
+if (bonus_game) {
     document.getElementById('btn-bonusgame').style.visibility = 'visible';
 }

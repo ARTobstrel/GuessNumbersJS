@@ -33,10 +33,29 @@ function select_random_mes(mes_array) {
     return mes_array[index];
 }
 
+// Функция правильно склоняет предложение в случае угадывания за 3 и менее попыток
+function getStringCounter(counter) {
+    if (counter === 1) {
+        return ' одной попытки';
+    }
+
+    if (counter === 2) {
+        return ' двух попыток';
+    }
+
+    if (counter === 3) {
+        return ' трёх попыток';
+    }
+
+    else {
+        return ' невероятного числа попыток'
+    }
+}
+
 // Функция проверок и изменений игровых условий и генерации игровых сообщений
 function getWindowMessage(input_number) {
     //если игра активна
-    if (set.active_game) {
+    if (active_game) {
 
         // введены буквы вместо цифр
         if (isNaN(input_number)) {
@@ -49,21 +68,21 @@ function getWindowMessage(input_number) {
         }
 
         // число введено повторно
-        if (set.setNum.has(input_number)) {
+        if (setNum.has(input_number)) {
             let y = select_random_mes(MESSAGE.already_exists_mes);
             return y.replace('num', input_number);
         }
 
         // введенное число равно загаданому числу
         if (input_number === number_in_memory) {
-            set.setNum.add(input_number);
-            set.active_game = false;
+            setNum.add(input_number);
+            active_game = false;
             document.getElementById('input-frame').style.visibility = 'hidden';
-            set.counter++;
+            counter++;
 
             //количество попыток не превышает 3 то запустить бонусную игру
-            if (set.counter <= 3) {
-                set.bonus_game = true;
+            if (counter <= 3) {
+                bonus_game = true;
                 document.getElementById('btn-bonusgame').style.visibility = 'visible';
                 return select_random_mes(MESSAGE.bonus_mes);
             } else {
@@ -73,15 +92,15 @@ function getWindowMessage(input_number) {
 
         // введенное число больше загаданного числа
         if (input_number > number_in_memory) {
-            set.setNum.add(input_number);
-            set.counter++;
+            setNum.add(input_number);
+            counter++;
             return select_random_mes(MESSAGE.less_mes);
         }
 
         // введенное число меньше загаданного числа
         if (input_number < number_in_memory) {
-            set.setNum.add(input_number);
-            set.counter++;
+            setNum.add(input_number);
+            counter++;
             return select_random_mes(MESSAGE.more_mes);
         }
     } else {
@@ -105,8 +124,5 @@ function getWindowMessageBonus(input_number, comp_number) {
     if (comp_number > input_number) {
         max_value = comp_number - 1;
         return select_random_mes(MESSAGE.less_mes);
-
     }
-
-
 }

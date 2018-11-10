@@ -7,10 +7,10 @@ window_out.innerHTML = window_message; // Выводит первое приве
 document.getElementById('btn-newgame').onclick = function () {
 
     document.getElementById('input-frame').style.visibility = 'visible';
-    set.bonus_game = false;
-    set.active_game = true;
-    set.counter = 0;
-    set.setNum.clear();
+    bonus_game = false;
+    active_game = true;
+    counter = 0;
+    setNum.clear();
     number_in_memory = guessedNumber();
     window_out.innerHTML = select_random_mes(MESSAGE.start); // выводит стартовое сообщение на экран 
 };
@@ -21,7 +21,7 @@ document.getElementById('btn-send').onclick = function () {
     input_number = stringToInt(value);
 
     // если активна бонусная игра, то срабатывает эта ветка
-    if (set.bonus_game) {
+    if (bonus_game) {
 
         while (notEqual) {
             comp_number = randomInteger(min_value, max_value);
@@ -29,6 +29,7 @@ document.getElementById('btn-send').onclick = function () {
             window_out.innerHTML += htmltext;
             htmltext = getWindowMessageBonus(input_number, comp_number);
             window_out.innerHTML += htmltext;
+            window_out.scrollTo(9999, 9999);
             console.log(comp_number);
         }
 
@@ -37,24 +38,25 @@ document.getElementById('btn-send').onclick = function () {
         // данная команда отоброжает сообщение на экране
         if (input_number === number_in_memory) {
 
-            if (set.counter <= 3) {
-                htmltext = `${getWindowMessage(input_number)}`.replace('number_in_memory', `${number_in_memory}`);
-                htmltext = htmltext.replace('counter', `${set.counter}` + ' попыток');
+            if (counter <= 3) {
+                htmltext = getWindowMessage(input_number).replace('number_in_memory', number_in_memory);
+                htmltext = htmltext.replace('counter', getStringCounter(counter));
                 window_out.innerHTML = htmltext;
 
             } else {
 
                 // если игрок угадал число, то экран полностью заменяется новым сообщением, с подстановкой переменных в строку
-                htmltext = `${getWindowMessage(input_number)}`.replace('number_in_memory', `${number_in_memory}`); //подстановка загаданного числа
-                htmltext = htmltext.replace('counter', `${set.counter}`); //подстановка количества попыток
-                all_nums = all_input_numbers(set.setNum) + '';
-                htmltext = htmltext.replace('all_input_numbers', `${all_nums}`); //подстановка введенных цифр
+                htmltext = getWindowMessage(input_number).replace('number_in_memory', number_in_memory); //подстановка загаданного числа
+                htmltext = htmltext.replace('counter', counter); //подстановка количества попыток
+                all_nums = all_input_numbers(setNum) + '';
+                htmltext = htmltext.replace('all_input_numbers', all_nums); //подстановка введенных цифр
                 window_out.innerHTML = htmltext;
             }
 
         } else {
             // в ином случае сообщения будут выводится друг за другом
             window_out.innerHTML += (`<br>${getWindowMessage(input_number)}`);
+            window_out.scrollTo(9999, 9999);
         }
 
 
@@ -71,8 +73,9 @@ document.getElementById('btn-bonusgame').onclick = function () {
     window_out.innerHTML = select_random_mes(MESSAGE.start_bonus_mes);
 
     document.getElementById('input-frame').style.visibility = 'visible';
-    set.active_game = false;
-    set.counter = 0;
-    set.setNum.clear();
+    active_game = false;
+    bonus_game = true;
+    counter = 0;
+    setNum.clear();
 
 };
