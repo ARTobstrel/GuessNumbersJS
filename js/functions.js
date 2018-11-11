@@ -89,6 +89,7 @@ function getWindowMessage(input_number) {
             //количество попыток не превышает 3 то запустить бонусную игру
             if (counter <= 3) {
                 bonus_game = true;
+                localStorage.setItem("bonusGameGuessNumber", true);
                 document.getElementById('btn-bonusgame').style.visibility = 'visible';
                 return select_random_mes(MESSAGE.bonus_mes);
             } else {
@@ -118,7 +119,6 @@ function getWindowMessage(input_number) {
 function getWindowMessageBonus(input_number, comp_number) {
 
     if (comp_number === input_number) {
-        notEqual = false;
         return select_random_mes(MESSAGE.win_bonus_mes);
     }
 

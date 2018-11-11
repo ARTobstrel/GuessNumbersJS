@@ -28,17 +28,21 @@ document.getElementById('btn-send').onclick = function () {
             comp_number = randomInteger(min_value, max_value);
             htmltext = select_random_mes(MESSAGE.comp_running_mes).replace('num', comp_number);
             window_out.innerHTML += getBR(htmltext);
-            htmltext = getWindowMessageBonus(input_number, comp_number);
-            window_out.innerHTML += getBR(htmltext);
             window_out.scrollTo(9999, 9999);
-            console.log(comp_number);
+            setTimeout(function () {
+                htmltext = getWindowMessageBonus(input_number, comp_number);
+                window_out.innerHTML += getBR(htmltext);
+                window_out.scrollTo(9999, 9999);
+                console.log(comp_number);
+            }, 1500);
+
 
             if (input_number === comp_number) {
                 clearInterval(intervalId);
                 bonus_game = false;
             }
 
-        }, 2000);
+        }, 3000);
 
 
     } else {

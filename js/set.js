@@ -1,8 +1,8 @@
 // Основные настройки игры
-active_game = false;
-bonus_game = false;
-counter = 0;
-setNum = new Set();
+let active_game = false;
+let bonus_game = false;
+let counter = 0;
+let setNum = new Set();
 
 
 //Создание переменных
@@ -12,9 +12,15 @@ let htmltext; // переменная с текстом который попа�
 let all_nums;
 let max_value = 1000;
 let min_value = 1;
-let notEqual = true;
 let comp_number;
 
+
+// Если пользователь ранее открыл бонусную игру, то по умолчанию она будет доступна всегда
+if (localStorage.getItem('bonusGameGuessNumber')) {
+    bonus_game = true;
+}
+
+// Если бонусная игра активна, то сделать видимой соответствующую кнопку.
 if (bonus_game) {
     document.getElementById('btn-bonusgame').style.visibility = 'visible';
 }
