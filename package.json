@@ -1,0 +1,14 @@
+{
+  "name": "guessnumberjs",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Fadeev Artem",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
