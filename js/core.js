@@ -87,6 +87,8 @@ document.getElementById('btn-bonusgame').onclick = function () {
     active_game = false;
     bonus_game = true;
     counter = 0;
+    max_value = 1000;
+    min_value = 1;
     setNum.clear();
 
 };
