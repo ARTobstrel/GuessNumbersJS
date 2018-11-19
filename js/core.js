@@ -1,13 +1,12 @@
-window_message = select_random_mes(MESSAGE.welcome_mes); //
-window_out.innerHTML = window_message; // Выводит первое приветствие при загрузке страницы
-
+// Выводит первое приветствие при загрузке страницы
+window_out.innerHTML = select_random_mes(MESSAGE.welcome_mes);
+checkBonusGame();
 
 // Присвоение событий кнопке 'new game'
 document.getElementById('btn-newgame').onclick = function () {
-
-    window_out.style.color = 'black';
+    checkBonusGame();
+    window_out.style.color = font_color;
     document.getElementById('input-frame').style.visibility = 'visible';
-    bonus_game = false;
     active_game = true;
     counter = 0;
     setNum.clear();
@@ -17,11 +16,16 @@ document.getElementById('btn-newgame').onclick = function () {
 
 // Присвоение события кнопке 'Send'
 document.getElementById('btn-send').onclick = function () {
+    checkBonusGame();
     value = document.getElementById('input-text').value;
+    // проверка на фичи
+    value = checkFeatures(value);
+
     input_number = stringToInt(value);
 
+
     // если активна бонусная игра, то срабатывает эта ветка
-    if (bonus_game) {
+    if (bonus_game && active_game === false && value !== GAGE) {
 
         document.getElementById('input-frame').style.visibility = 'hidden';
         let intervalId = setInterval(function () {
@@ -47,7 +51,12 @@ document.getElementById('btn-send').onclick = function () {
 
     } else {
 
-        // данная команда отоброжает сообщение на экране
+        // Если активна обычная игра то активируется данная ветка
+        // Отоброжает сообщение на экране
+        if (input_print && value !== GAGE) { //если активна опция input_print то на дисплее отображается цифры введенные пользователем
+            window_out.innerHTML += getBR(input_number);
+        }
+
         if (input_number === number_in_memory) {
 
             if (counter <= 3) {
@@ -81,14 +90,12 @@ document.getElementById('btn-send').onclick = function () {
 // Присвоение события кнопке 'Bonus'
 document.getElementById('btn-bonusgame').onclick = function () {
     //Вывод на экран правил игры
-    window_out.style.color = 'blue';
+    window_out.style.color = font_color;
     window_out.innerHTML = select_random_mes(MESSAGE.start_bonus_mes);
     document.getElementById('input-frame').style.visibility = 'visible';
     active_game = false;
-    bonus_game = true;
     counter = 0;
     max_value = 1000;
     min_value = 1;
     setNum.clear();
-
 };

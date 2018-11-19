@@ -58,10 +58,68 @@ function getBR(text) {
     return (`<br>${text}`);
 }
 
+// Функция проверяет активацию бонусной игры
+// если бонусная игра активна, то сделать видимой соответствующую кнопку.
+function checkBonusGame() {
+    // если пользователь ранее открыл бонусную игру, то по умолчанию она будет доступна всегда
+    if (localStorage.getItem('bonusGameGuessNumber')) {
+        bonus_game = true;
+    }
+    if (bonus_game) {
+        document.getElementById('btn-bonusgame').style.visibility = 'visible';
+        localStorage.setItem("bonusGameGuessNumber", true);
+    }
+    else {
+        document.getElementById('btn-bonusgame').style.visibility = 'hidden';
+        localStorage.removeItem("bonusGameGuessNumber");
+    }
+}
+
+
+// Функция проверяет ввод скрытых команд
+function checkFeatures(value) {
+    if (value === PRINT) { // активация/деактивация вывода пользовательских цифр
+        if (input_print) {
+            input_print = false;
+            window_out.innerHTML += getBR('input_print = false')
+        }
+        else {
+            input_print = true;
+            window_out.innerHTML += getBR('input_print = true')
+        }
+        return GAGE;
+    }
+    if (value === BONUS) { // активация/деактивация бонусной игры
+        if (bonus_game) {
+            bonus_game = false;
+            localStorage.removeItem("bonusGameGuessNumber");
+            window_out.innerHTML += getBR('bonus_game = false')
+        }
+        else {
+            bonus_game = true;
+            window_out.innerHTML += getBR('bonus_game = true')
+        }
+        checkBonusGame();
+        return GAGE;
+    }
+
+    if (value === AUTHOR) {
+        window_out.innerHTML += getBR('Fadeev Artem');
+        return GAGE;
+    }
+
+    return value;
+}
+
 // Функция проверок и изменений игровых условий и генерации игровых сообщений
 function getWindowMessage(input_number) {
     //если игра активна
     if (active_game) {
+
+        // если введен GAGE то ничего не выводить
+        if (input_number === GAGE) {
+            return '#';
+        }
 
         // введены буквы вместо цифр
         if (isNaN(input_number)) {
@@ -86,11 +144,11 @@ function getWindowMessage(input_number) {
             document.getElementById('input-frame').style.visibility = 'hidden';
             counter++;
 
-            //количество попыток не превышает 3 то запустить бонусную игру
+            //если количество попыток не превышает 3 то запустить бонусную игру
             if (counter <= 3) {
                 bonus_game = true;
-                localStorage.setItem("bonusGameGuessNumber", true);
-                document.getElementById('btn-bonusgame').style.visibility = 'visible';
+                checkBonusGame();
+                font_color = 'blue';
                 return select_random_mes(MESSAGE.bonus_mes);
             } else {
                 return select_random_mes(MESSAGE.win_mes);
@@ -111,7 +169,10 @@ function getWindowMessage(input_number) {
             return select_random_mes(MESSAGE.more_mes);
         }
     } else {
-
+        // игра не активна, значит вывести приветственное сообщение
+        if (input_number === GAGE) {
+            return '#';
+        }
         return select_random_mes(MESSAGE.welcome_mes);
     }
 }

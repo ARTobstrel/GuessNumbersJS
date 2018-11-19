@@ -1,8 +1,11 @@
 // Основные настройки игры
-let active_game = false;
-let bonus_game = false;
+let active_game = false;  // активация игры
+let bonus_game = false; // активация бонусной игры
 let counter = 0;
 let setNum = new Set();
+let input_print = false; // отображение цифр на дисплее введенных пользователем
+let font_color = 'black';
+const GAGE = 250482;
 
 
 //Создание переменных
@@ -14,13 +17,7 @@ let max_value = 1000;
 let min_value = 1;
 let comp_number;
 
-
-// Если пользователь ранее открыл бонусную игру, то по умолчанию она будет доступна всегда
-if (localStorage.getItem('bonusGameGuessNumber')) {
-    bonus_game = true;
-}
-
-// Если бонусная игра активна, то сделать видимой соответствующую кнопку.
-if (bonus_game) {
-    document.getElementById('btn-bonusgame').style.visibility = 'visible';
-}
+//Скрытые команды
+const PRINT = 'print';
+const BONUS = 'bonus';
+const AUTHOR = 'author';
