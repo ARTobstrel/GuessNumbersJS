@@ -99,3 +99,19 @@ document.getElementById('btn-bonusgame').onclick = function () {
     min_value = 1;
     setNum.clear();
 };
+
+// Присвоение событий клавиатуре
+
+// Присвоение кнопкам "0-9"
+
+for (let i = 0; i < 10; i++) {
+    var btn = 'btnnum'.replace('num', i);
+    document.getElementById(btn).onclick = function () {
+        document.getElementById('input-text').value += i;
+    };
+}
+
+// Присвоение кнопке "clear"
+document.getElementById('clear').onclick = function () {
+    document.getElementById('input-text').value = '';
+};

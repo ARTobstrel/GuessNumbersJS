@@ -108,6 +108,12 @@ function checkFeatures(value) {
         return GAGE;
     }
 
+    if (value === KEYBORD) {
+        keybord.style.visibility = 'visible';
+        window_out.innerHTML += getBR('keybord = true');
+        return GAGE;
+    }
+
     return value;
 }
 

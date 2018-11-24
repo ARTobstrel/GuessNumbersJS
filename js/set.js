@@ -5,7 +5,7 @@ let counter = 0;
 let setNum = new Set();
 let input_print = false; // отображение цифр на дисплее введенных пользователем
 let font_color = 'black';
-const GAGE = 250482;
+const GAGE = 250482; // эталон
 
 
 //Создание переменных
@@ -16,8 +16,10 @@ let all_nums;
 let max_value = 1000;
 let min_value = 1;
 let comp_number;
+let keybord = document.getElementById('keybord');
 
 //Скрытые команды
 const PRINT = 'print';
 const BONUS = 'bonus';
 const AUTHOR = 'author';
+const KEYBORD = 'keybord';

@@ -113,6 +113,25 @@
     box-shadow: 3px 3px 4px #bababa, inset 0px 0px 1px #e69f9f;
 }
 
+#keybord {
+    /*visibility: hidden;*/
+    position: absolute;
+    top: 270px;
+    left: 42px;
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+}
+
+#keybord button {
+    width: 30%;
+    height: 25px;
+    /*border: 1px solid #4e5cff;*/
+    box-shadow: inset 1px 1px 30px #b3b5c7;
+}
+
+
+
 #footer-frame {
     position: absolute;
     display: inline-block;
