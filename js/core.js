@@ -4,6 +4,7 @@ checkBonusGame();
 
 // Присвоение событий кнопке 'new game'
 document.getElementById('btn-newgame').onclick = function () {
+    clearUserValue(); // очищает окно ввода цифр
     checkBonusGame();
     window_out.style.color = font_color;
     document.getElementById('input-frame').style.visibility = 'visible';
@@ -17,7 +18,7 @@ document.getElementById('btn-newgame').onclick = function () {
 // Присвоение события кнопке 'Send'
 document.getElementById('btn-send').onclick = function () {
     checkBonusGame();
-    value = document.getElementById('input-text').value;
+    value = value_user.value;
     // проверка на фичи
     value = checkFeatures(value);
 
@@ -89,6 +90,7 @@ document.getElementById('btn-send').onclick = function () {
 
 // Присвоение события кнопке 'Bonus'
 document.getElementById('btn-bonusgame').onclick = function () {
+    clearUserValue(); // очищает окно ввода цифр
     //Вывод на экран правил игры
     window_out.style.color = font_color;
     window_out.innerHTML = select_random_mes(MESSAGE.start_bonus_mes);
@@ -107,11 +109,11 @@ document.getElementById('btn-bonusgame').onclick = function () {
 for (let i = 0; i < 10; i++) {
     var btn = 'btnnum'.replace('num', i);
     document.getElementById(btn).onclick = function () {
-        document.getElementById('input-text').value += i;
+        value_user.value += i;
     };
 }
 
 // Присвоение кнопке "clear"
 document.getElementById('clear').onclick = function () {
-    document.getElementById('input-text').value = '';
+    value_user.value = '';
 };

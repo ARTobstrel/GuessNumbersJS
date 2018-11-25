@@ -108,13 +108,30 @@ function checkFeatures(value) {
         return GAGE;
     }
 
-    if (value === KEYBORD) {
+    if (value === KEYBOARD) {
         keybord.style.visibility = 'visible';
         window_out.innerHTML += getBR('keybord = true');
         return GAGE;
     }
 
+    if (value === GETNUMS) {
+        all_nums = 'nums: ' + all_input_numbers(setNum);
+        window_out.innerHTML += getBR(all_nums);
+        return GAGE;
+    }
+
+    // if (value.slice(0, 9) === FONTCOLOR) {
+    //     window_out.innerHTML += getBR('OK');
+    //     return GAGE
+    // }
+
     return value;
+}
+
+
+// Функция очищает окно для ввода цифр
+function clearUserValue() {
+    value_user.value = '';
 }
 
 // Функция проверок и изменений игровых условий и генерации игровых сообщений

@@ -113,20 +113,31 @@
     box-shadow: 3px 3px 4px #bababa, inset 0px 0px 1px #e69f9f;
 }
 
-#keybord {
-    /*visibility: hidden;*/
+.container_keyboard {
     position: absolute;
     top: 270px;
-    left: 42px;
+    width: 100%;
     display: flex;
-    width: 80%;
-    flex-direction: column;
+    justify-content: center;
+
 }
 
-#keybord button {
+#keyboard {
+    visibility: hidden;
+    display: flex;
+    flex-basis: 80%;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#keyboard div {
+    display: flex;
+    justify-content: center;
+}
+
+#keyboard button {
     width: 30%;
     height: 25px;
-    /*border: 1px solid #4e5cff;*/
     box-shadow: inset 1px 1px 30px #b3b5c7;
 }
 
@@ -169,5 +180,9 @@
 @media screen and (max-width: 400px) {
     #author {
         display: none;
+    }
+
+    #keyboard {
+        visibility: visible;
     }
 }
