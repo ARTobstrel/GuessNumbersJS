@@ -164,7 +164,7 @@ function getWindowMessage(input_number) {
         if (input_number === number_in_memory) {
             setNum.add(input_number);
             active_game = false;
-            document.getElementById('input-frame').style.visibility = 'hidden';
+            input_frame.style.visibility = 'hidden';
             counter++;
 
             //если количество попыток не превышает 3 то запустить бонусную игру

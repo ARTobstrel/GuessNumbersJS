@@ -18,6 +18,7 @@ let max_value = 1000;
 let min_value = 1;
 let comp_number;
 let keybord = document.getElementById('keyboard');
+let input_frame = document.getElementById('input-frame');
 
 //Скрытые команды
 const PRINT = '#print';

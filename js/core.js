@@ -7,7 +7,7 @@ document.getElementById('btn-newgame').onclick = function () {
     clearUserValue(); // очищает окно ввода цифр
     checkBonusGame();
     window_out.style.color = font_color;
-    document.getElementById('input-frame').style.visibility = 'visible';
+    input_frame.style.visibility = 'visible';
     active_game = true;
     counter = 0;
     setNum.clear();
@@ -28,7 +28,7 @@ document.getElementById('btn-send').onclick = function () {
     // если активна бонусная игра, то срабатывает эта ветка
     if (bonus_game && active_game === false && value !== GAGE) {
 
-        document.getElementById('input-frame').style.visibility = 'hidden';
+        input_frame.style.visibility = 'hidden';
         let intervalId = setInterval(function () {
             comp_number = randomInteger(min_value, max_value);
             htmltext = select_random_mes(MESSAGE.comp_running_mes).replace('num', comp_number);
@@ -94,7 +94,7 @@ document.getElementById('btn-bonusgame').onclick = function () {
     //Вывод на экран правил игры
     window_out.style.color = font_color;
     window_out.innerHTML = select_random_mes(MESSAGE.start_bonus_mes);
-    document.getElementById('input-frame').style.visibility = 'visible';
+    input_frame.style.visibility = 'visible';
     active_game = false;
     counter = 0;
     max_value = 1000;
@@ -116,4 +116,9 @@ for (let i = 0; i < 10; i++) {
 // Присвоение кнопке "clear"
 document.getElementById('clear').onclick = function () {
     value_user.value = '';
+};
+
+// Присвоение кнопке 8
+document.getElementById('bar').onclick = function () {
+    value_user.value += '#';
 };
